@@ -1,0 +1,224 @@
+{
+  "apiVersion": "training.eduk8s.io/v1alpha2",
+  "kind": "Workshop",
+  "metadata": {
+    "annotations": {
+      "kapp.k14s.io/identity": "v1;/training.eduk8s.io/Workshop/edu-ilt-intro-02;training.eduk8s.io/v1alpha2",
+      "kapp.k14s.io/original": "{\"apiVersion\":\"training.eduk8s.io/v1alpha2\",\"kind\":\"Workshop\",\"metadata\":{\"labels\":{\"kapp.k14s.io/app\":\"1639089236388283044\",\"kapp.k14s.io/association\":\"v1.17ddac5fa06c49cb8d72fc048bd5b7c6\"},\"name\":\"edu-ilt-intro-02\"},\"spec\":{\"authors\":[\"eduk8s team\"],\"description\":\"Introduction to Containers and Kubernetes\",\"difficulty\":\"beginner\",\"duration\":\"3h\",\"environment\":{\"objects\":[{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"name\":\"$(workshop_namespace)-files\",\"namespace\":\"$(workshop_namespace)\"},\"spec\":{\"ports\":[{\"port\":80,\"protocol\":\"TCP\",\"targetPort\":8080}],\"selector\":{\"deployment\":\"files\"},\"type\":\"ClusterIP\"}},{\"apiVersion\":\"networking.k8s.io/v1beta1\",\"kind\":\"Ingress\",\"metadata\":{\"name\":\"$(workshop_namespace)-files\",\"namespace\":\"$(workshop_namespace)\"},\"spec\":{\"rules\":[{\"host\":\"$(workshop_namespace)-files.$(ingress_domain)\",\"http\":{\"paths\":[{\"backend\":{\"serviceName\":\"$(workshop_namespace)-files\",\"servicePort\":80},\"path\":\"/\"}]}}],\"tls\":[{\"hosts\":[\"$(workshop_namespace)-files.$(ingress_domain)\"],\"secretName\":\"eduk8s-wildcard-tls\"}]}},{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"name\":\"$(workshop_namespace)-files\",\"namespace\":\"$(workshop_namespace)\"},\"spec\":{\"replicas\":1,\"selector\":{\"matchLabels\":{\"deployment\":\"files\"}},\"strategy\":{\"type\":\"Recreate\"},\"template\":{\"metadata\":{\"labels\":{\"deployment\":\"files\"}},\"spec\":{\"containers\":[{\"image\":\"ghcr.io/vmware-tanzu-private/edu-ilt-intro:prod\",\"imagePullPolicy\":\"Always\",\"name\":\"files\"}]}}}}]},\"session\":{\"applications\":{\"docker\":{\"enabled\":true},\"registry\":{\"enabled\":true},\"workshop\":{\"url\":\"$(ingress_protocol)://$(workshop_namespace)-files.$(ingress_domain)/educates/instructions/lab02/lab02.html\"}},\"env\":[{\"name\":\"LAB_NUMBER\",\"value\":\"2\"},{\"name\":\"WEBSERVER\",\"value\":\"http://$(workshop_namespace)-files\"},{\"name\":\"BOOTSTRAP_COMMAND\",\"value\":\"curl http://$(workshop_namespace)-files/_static/lab-ff.sh -o .lab-ff.sh \\u0026\\u0026 chmod 755 .lab-ff.sh \\u0026\\u0026 source .lab-ff.sh 1\"}],\"ingresses\":[{\"name\":\"gowebapp-docker\",\"port\":8080},{\"host\":\"gowebapp.$(session_namespace).svc.cluster.local\",\"name\":\"gowebapp-k8s\",\"port\":8080}]},\"tags\":[\"containers\",\"kubernetes\"],\"title\":\"Introduction to Containers and Kubernetes - Lab 02\",\"vendor\":\"VMware Inc.\"}}",
+      "kapp.k14s.io/original-diff-md5": "c6e94dc94aed3401b5d0f26ed6c0bff3"
+    },
+    "creationTimestamp": "2021-12-09T22:34:00Z",
+    "generation": 1,
+    "labels": {
+      "kapp.k14s.io/app": "1639089236388283044",
+      "kapp.k14s.io/association": "v1.17ddac5fa06c49cb8d72fc048bd5b7c6"
+    },
+    "managedFields": [
+      {
+        "apiVersion": "training.eduk8s.io/v1alpha2",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              ".": {},
+              "f:kapp.k14s.io/identity": {},
+              "f:kapp.k14s.io/original": {},
+              "f:kapp.k14s.io/original-diff-md5": {}
+            },
+            "f:labels": {
+              ".": {},
+              "f:kapp.k14s.io/app": {},
+              "f:kapp.k14s.io/association": {}
+            }
+          },
+          "f:spec": {
+            ".": {},
+            "f:authors": {},
+            "f:description": {},
+            "f:difficulty": {},
+            "f:duration": {},
+            "f:environment": {
+              ".": {},
+              "f:objects": {}
+            },
+            "f:session": {
+              ".": {},
+              "f:applications": {
+                ".": {},
+                "f:docker": {
+                  ".": {},
+                  "f:enabled": {}
+                },
+                "f:registry": {
+                  ".": {},
+                  "f:enabled": {}
+                },
+                "f:workshop": {
+                  ".": {},
+                  "f:url": {}
+                }
+              },
+              "f:env": {},
+              "f:ingresses": {}
+            },
+            "f:tags": {},
+            "f:title": {},
+            "f:vendor": {}
+          }
+        },
+        "manager": "kapp",
+        "operation": "Update",
+        "time": "2021-12-09T22:34:00Z"
+      }
+    ],
+    "name": "edu-ilt-intro-02",
+    "resourceVersion": "5801",
+    "uid": "69feaa26-2593-49fc-8530-7c1bb833fb1a"
+  },
+  "spec": {
+    "authors": [
+      "eduk8s team"
+    ],
+    "description": "Introduction to Containers and Kubernetes",
+    "difficulty": "beginner",
+    "duration": "3h",
+    "environment": {
+      "objects": [
+        {
+          "apiVersion": "v1",
+          "kind": "Service",
+          "metadata": {
+            "name": "$(workshop_namespace)-files",
+            "namespace": "$(workshop_namespace)"
+          },
+          "spec": {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": 8080
+              }
+            ],
+            "selector": {
+              "deployment": "files"
+            },
+            "type": "ClusterIP"
+          }
+        },
+        {
+          "apiVersion": "networking.k8s.io/v1beta1",
+          "kind": "Ingress",
+          "metadata": {
+            "name": "$(workshop_namespace)-files",
+            "namespace": "$(workshop_namespace)"
+          },
+          "spec": {
+            "rules": [
+              {
+                "host": "$(workshop_namespace)-files.$(ingress_domain)",
+                "http": {
+                  "paths": [
+                    {
+                      "backend": {
+                        "serviceName": "$(workshop_namespace)-files",
+                        "servicePort": 80
+                      },
+                      "path": "/"
+                    }
+                  ]
+                }
+              }
+            ],
+            "tls": [
+              {
+                "hosts": [
+                  "$(workshop_namespace)-files.$(ingress_domain)"
+                ],
+                "secretName": "eduk8s-wildcard-tls"
+              }
+            ]
+          }
+        },
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "name": "$(workshop_namespace)-files",
+            "namespace": "$(workshop_namespace)"
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "deployment": "files"
+              }
+            },
+            "strategy": {
+              "type": "Recreate"
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "deployment": "files"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "image": "ghcr.io/vmware-tanzu-private/edu-ilt-intro:prod",
+                    "imagePullPolicy": "Always",
+                    "name": "files"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "session": {
+      "applications": {
+        "docker": {
+          "enabled": true
+        },
+        "registry": {
+          "enabled": true
+        },
+        "workshop": {
+          "url": "$(ingress_protocol)://$(workshop_namespace)-files.$(ingress_domain)/educates/instructions/lab02/lab02.html"
+        }
+      },
+      "env": [
+        {
+          "name": "LAB_NUMBER",
+          "value": "2"
+        },
+        {
+          "name": "WEBSERVER",
+          "value": "http://$(workshop_namespace)-files"
+        },
+        {
+          "name": "BOOTSTRAP_COMMAND",
+          "value": "curl http://$(workshop_namespace)-files/_static/lab-ff.sh -o .lab-ff.sh && chmod 755 .lab-ff.sh && source .lab-ff.sh 1"
+        }
+      ],
+      "ingresses": [
+        {
+          "name": "gowebapp-docker",
+          "port": 8080
+        },
+        {
+          "host": "gowebapp.$(session_namespace).svc.cluster.local",
+          "name": "gowebapp-k8s",
+          "port": 8080
+        }
+      ]
+    },
+    "tags": [
+      "containers",
+      "kubernetes"
+    ],
+    "title": "Introduction to Containers and Kubernetes - Lab 02",
+    "vendor": "VMware Inc."
+  }
+}

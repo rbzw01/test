@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: gowebapp
+  labels:
+    run: gowebapp
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: gowebapp
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        run: gowebapp
+        tier: frontend
+    spec:
+      containers:
+      - name: gowebapp
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: mypassword
+        image: eduk8s-labs-w10-s501-registry.kube-prod-blue-524328a.kubeacademy.esp.vmware.com/gowebapp:v1       
+        ports:
+        - containerPort: 80
